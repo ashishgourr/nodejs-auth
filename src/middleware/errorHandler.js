@@ -1,4 +1,4 @@
-class AppError extends Error {
+export class AppError extends Error {
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
@@ -9,7 +9,7 @@ class AppError extends Error {
   }
 }
 
-const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
   console.error(err);
 
   err.statusCode = err.statusCode || 500;
@@ -81,9 +81,4 @@ const errorHandler = (err, req, res, next) => {
         : "Something went wrong!",
     ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
   });
-};
-
-module.exports = {
-  AppError,
-  errorHandler,
 };

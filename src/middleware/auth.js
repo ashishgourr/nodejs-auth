@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
-const { promisify } = require("util");
+import { verify, TokenExpiredError, JsonWebTokenError } from "jsonwebtoken";
+import { promisify } from "util";
 
-const verifyJwtAsync = promisify(jwt.verify);
+const verifyJwtAsync = promisify(verify);
 
 const authenticateToken = async (req, res, next) => {
   try {
@@ -23,13 +23,13 @@ const authenticateToken = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    if (error instanceof jwt.TokenExpiredError) {
+    if (error instanceof TokenExpiredError) {
       return res.status(401).json({
         success: false,
         message: "Token expired",
       });
     }
-    if (error instanceof jwt.JsonWebTokenError) {
+    if (error instanceof JsonWebTokenError) {
       return res.status(403).json({
         success: false,
         message: "Invalid token",
@@ -39,6 +39,6 @@ const authenticateToken = async (req, res, next) => {
   }
 };
 
-module.exports = {
+export default {
   authenticateToken,
 };

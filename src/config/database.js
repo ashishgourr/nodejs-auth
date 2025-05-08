@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const initializeDatabase = require("./dbInit");
+import mongoose from "mongoose";
+import initializeDatabase from "./dbInit.js";
 
 const connectDB = async () => {
   try {
@@ -19,4 +19,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

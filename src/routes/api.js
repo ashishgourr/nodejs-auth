@@ -1,6 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const jwt = require("jsonwebtoken");
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+
+const router = Router();
 
 // Middleware to verify JWT token
 const authenticateToken = (req, res, next) => {
@@ -79,4 +80,4 @@ router.get("/dashboard", authenticateToken, (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

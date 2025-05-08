@@ -1,6 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const mongoose = require("mongoose");
+import { Router } from "express";
+import mongoose from "mongoose";
+
+const router = Router();
 
 /**
  * @swagger
@@ -43,4 +44,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

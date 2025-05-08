@@ -1,4 +1,4 @@
-const User = require("../models/User");
+import User from "../models/User.js";
 
 const initializeDatabase = async () => {
   try {
@@ -13,4 +13,4 @@ const initializeDatabase = async () => {
   }
 };
 
-module.exports = initializeDatabase;
+export default initializeDatabase;

@@ -1,9 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const passport = require("passport");
-const User = require("../models/User");
+import { Router } from "express";
+import { hash, compare } from "bcryptjs";
+import jwt from "jsonwebtoken";
+import passport from "passport";
+import User from "../models/User.js";
+
+const router = Router();
 
 /**
  * @swagger
@@ -37,7 +38,7 @@ router.post("/register", async (req, res) => {
     }
 
     // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await hash(password, 10);
 
     // Create new user
     const user = await User.create({
@@ -83,7 +84,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Check password
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await compare(password, user.password);
     if (!isValidPassword) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
@@ -122,4 +123,4 @@ router.get(
   }
 );
 
-module.exports = router;
+export default router;
