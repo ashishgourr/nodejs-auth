@@ -23,8 +23,8 @@ A robust Node.js authentication API with local and Google OAuth authentication.
 1. Clone the repository:
 
 ```bash
-git clone <your-repo-url>
-cd nodejs-assignment
+git clone https://github.com/ashishgourr/nodejs-auth.git
+cd nodejs-auth
 ```
 
 2. Install dependencies:
